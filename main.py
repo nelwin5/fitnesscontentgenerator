@@ -10,7 +10,7 @@ st.set_page_config(
     initial_sidebar_state="expanded",
 )
 
-api_key = "YOUR_API_KEY"  # Replace with your actual API key
+api_key = "AIzaSyD3EwDSjOjYp0ag5PaWdxqfe_f1n3qvLn0"  # Replace with your actual API key
 genai.configure(api_key=api_key)
 
 # Initialize the generative model
