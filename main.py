@@ -2,7 +2,10 @@ import streamlit as st
 import google.generativeai as genai
 import base64
 
-#API key
+#Favicon and title
+st.set_page_config(page_title="FitGen", page_icon="images/logo.png")
+
+# API key
 api_key = "AIzaSyD3EwDSjOjYp0ag5PaWdxqfe_f1n3qvLn0"
 genai.configure(api_key=api_key)
 
@@ -34,7 +37,7 @@ def get_img_as_base64(file):
         data = f.read()
     return base64.b64encode(data).decode()
 
-#Styling and background
+# Styling and background
 background_img = get_img_as_base64("images/background.jpg")
 logo_img = get_img_as_base64("images/logo.png")
 favicon_img = get_img_as_base64("images/logo.png")
@@ -84,7 +87,7 @@ def multi_level_prompting():
     
     # Logo Image
     st.markdown(f'<img src="data:image/png;base64,{logo_img}" alt="logo" style="position: fixed; top: 20px; left: 20px; width: 150px; z-index: 9999;">', unsafe_allow_html=True)
-    
+
     # Content and description
     st.title("FitGen: Your Personalized Fitness Content Creator")
     st.subheader("Final Project in CCS 229 - Intelligent Systems")
@@ -137,6 +140,10 @@ def multi_level_prompting():
             response = chat_session.send_message(input_text)
             st.subheader("Generated Fitness Content")
             st.write(response.text)
+
+            # Option to generate another different result
+            if st.button("Generate Another Result"):
+                multi_level_prompting()  # Start the process again
 
 # Run the multi-level prompting function
 if __name__ == "__main__":
